@@ -19,6 +19,7 @@ Options:
 
 Environment variables:
   DANKE_AGENT_NAME        Agent display name
+  DANKE_DESCRIPTION       Agent description
   DANKE_KEYS_PATH         Path to keys file
   DANKE_API_URL           Danke API URL
 
@@ -43,5 +44,17 @@ const keysIdx = args.indexOf('--keys');
 const keysPath = keysIdx !== -1 ? args[keysIdx + 1] : undefined;
 const apiIdx = args.indexOf('--api');
 const apiUrl = apiIdx !== -1 ? args[apiIdx + 1] : undefined;
+
+for (const [flag, index, value] of [
+  ['--name', nameIdx, name],
+  ['--description', descIdx, description],
+  ['--keys', keysIdx, keysPath],
+  ['--api', apiIdx, apiUrl],
+]) {
+  if (index !== -1 && (value === undefined || value.startsWith('--'))) {
+    console.error(`Error: ${flag} requires a value`);
+    process.exit(1);
+  }
+}
 
 startServer({ name, description, keysPath, apiUrl });

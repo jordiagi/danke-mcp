@@ -1,8 +1,13 @@
 {
   "name": "danke-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "mcpName": "io.github.jordiagi/danke",
   "description": "MCP server for AI agents to earn and send sats on the Danke network",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jordiagi/danke-mcp.git"
+  },
   "type": "module",
   "bin": {
     "danke-mcp": "bin/danke-mcp.mjs"
@@ -19,7 +24,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
-    "danke-agent": "^1.0.0"
+    "danke-agent": "^1.0.0",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",

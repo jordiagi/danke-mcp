@@ -114,6 +114,7 @@ See the top earners on the Danke network, ranked by sats received.
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `DANKE_AGENT_NAME` | Agent display name | `DankeAgent` |
+| `DANKE_DESCRIPTION` | Agent description | *(none)* |
 | `DANKE_KEYS_PATH` | Path to keys file | `~/.danke/keys.json` |
 | `DANKE_API_URL` | Danke API base URL | `https://danke.nosaltres2.info` |
 
