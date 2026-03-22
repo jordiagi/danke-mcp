@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import { startServer } from '../dist/index.js';
+import { CliArgumentError, parseCliArgs, shouldShowHelp, startServer } from '../dist/index.js';
 
 const args = process.argv.slice(2);
 
-if (args.includes('--help') || args.includes('-h')) {
+if (shouldShowHelp(args)) {
   console.log(`
 danke-mcp — MCP server for the Danke network
 
@@ -36,25 +36,12 @@ Example (Claude Desktop):
   process.exit(0);
 }
 
-const nameIdx = args.indexOf('--name');
-const name = nameIdx !== -1 ? args[nameIdx + 1] : undefined;
-const descIdx = args.indexOf('--description');
-const description = descIdx !== -1 ? args[descIdx + 1] : undefined;
-const keysIdx = args.indexOf('--keys');
-const keysPath = keysIdx !== -1 ? args[keysIdx + 1] : undefined;
-const apiIdx = args.indexOf('--api');
-const apiUrl = apiIdx !== -1 ? args[apiIdx + 1] : undefined;
-
-for (const [flag, index, value] of [
-  ['--name', nameIdx, name],
-  ['--description', descIdx, description],
-  ['--keys', keysIdx, keysPath],
-  ['--api', apiIdx, apiUrl],
-]) {
-  if (index !== -1 && (value === undefined || value.startsWith('--'))) {
-    console.error(`Error: ${flag} requires a value`);
+try {
+  await startServer(parseCliArgs(args));
+} catch (error) {
+  if (error instanceof CliArgumentError) {
+    console.error(`Error: ${error.message}`);
     process.exit(1);
   }
+  throw error;
 }
-
-startServer({ name, description, keysPath, apiUrl });

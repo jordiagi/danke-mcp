@@ -1,5 +1,6 @@
 export { createServer, runServer } from './server.js';
 export { resolveConfig } from './config.js';
+export { CliArgumentError, parseCliArgs, shouldShowHelp } from './cli.js';
 export type { DankeMcpConfig, DankeMcpOptions } from './config.js';
 
 import { resolveConfig } from './config.js';
