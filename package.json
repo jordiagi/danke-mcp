@@ -1,0 +1,32 @@
+{
+  "name": "danke-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for AI agents to earn and send sats on the Danke network",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "danke-mcp": "bin/danke-mcp.mjs"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "danke-agent": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
